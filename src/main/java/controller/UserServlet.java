@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet{
 			if (khachHang != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("khachHang", khachHang);
-				url = "/index.jsp";
+				url = "/home";
 			} else {			
 				request.setAttribute("baoLoi", "Incorrect username or password!");
 				url = "/khachhang/dangnhap.jsp";
@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet{
 			String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath();
 
-			response.sendRedirect(url + "/index.jsp");
+			response.sendRedirect(url + "/home");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

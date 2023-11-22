@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,11 +19,11 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartId;
 	@OneToMany(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
-	private ArrayList<LineItem> items;
+	private List<LineItem> items;
 	public Cart() {
 		super();
 	}
-	public Cart(int cartId, ArrayList<LineItem> items) {
+	public Cart(int cartId, List<LineItem> items) {
 		super();
 		this.cartId = cartId;
 		this.items = items;
@@ -37,10 +37,10 @@ public class Cart implements Serializable{
 		this.cartId = cartId;
 	}
 
-    public void setItems(ArrayList<LineItem> items) {
+    public void setItems(List<LineItem> items) {
 		this.items = items;
 	}
-	public ArrayList<LineItem> getItems()
+	public List<LineItem> getItems()
     { 
         return items;
     }

@@ -1,15 +1,10 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,20 +18,18 @@ public class Product implements Serializable{
 	private String descript;
 	private double price;
 	private String imgLink;
-	private String brand;
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	private List<Size> size;
-	@OneToOne
-	private Sale sale;
+	private int category;
+	private int amount;
 	
-	public Product(int productId, String productName, String descript, double price, String imgLink, String brand) {
+	public Product(int productId, String productName, String descript, double price, String imgLink,int category, int amount) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.descript = descript;
 		this.price = price;
 		this.imgLink = imgLink;
-		this.brand = brand;
+		this.category = category;
+		this.amount = amount;
 	}
 	public Product() {
 		super();
@@ -59,12 +52,6 @@ public class Product implements Serializable{
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public String getDescription() {
-		return descript;
-	}
-	public void setDescription(String description) {
-		this.descript = description;
-	}
 	public double getPrice() {
 		return price;
 	}
@@ -77,22 +64,16 @@ public class Product implements Serializable{
 	public void setImgLink(String imgLink) {
 		this.imgLink = imgLink;
 	}
-	public String getBrand() {
-		return brand;
+	public int getCategory() {
+		return category;
 	}
-	public void setBrand(String brand) {
-		this.brand = brand;
+	public void setCategory(int category) {
+		this.category = category;
 	}
-	public Sale getSale() {
-		return sale;
+	public int getAmount() {
+		return amount;
 	}
-	public void setSale(Sale sale) {
-		this.sale = sale;
-	}
-	public List<Size> getSize() {
-		return size;
-	}
-	public void setSize(List<Size> size) {
-		this.size = size;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 }

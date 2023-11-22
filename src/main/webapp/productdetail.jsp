@@ -1,79 +1,9 @@
-<%@page import="model.User"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Document</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" ></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="views/product.html">Products</a></li>
-					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category.jsp" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Jean pant</a></li>
-							<li><a class="dropdown-item" href="#">T-Shirt</a></li>
-							<!-- <li><hr class="dropdown-divider"></li> -->
-							<li><a class="dropdown-item" href="#">Shirt</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a></li>
-					<li class="nav-item"><a class="nav-link" href="contsct.jsp">Contact</a>
-					</li>
-				</ul>
-				<form class="d-flex" role="search" style="position: relative;display: block;float: right;">
-					<!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Find</button> -->
-					<%
-						Object obj = session.getAttribute("khachHang");
-						User khachHang = null;
-						if (obj!=null)
-							khachHang = (User)obj;
-						
-						if(khachHang==null){
-					%>
-						<a class="btn btn-primary" style="white-space: nowrap;" href="khachhang/dangnhap.jsp">
-							Login
-						</a>
-					<%} else { %>
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0 bg-infor ">
-						<li class="nav-item dropdown dropstart">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Account</a>
-							<ul class="dropdown-menu">
-								<!-- <li><a class="dropdown-item" href="#">My Order</a></li>
-								<li><a class="dropdown-item" href="#">Notice</a></li> -->
-								<li><a class="dropdown-item" href="khachhang/thaydoithongtin.jsp">Change Information</a></li>
-								<li><a class="dropdown-item" href="khachhang/doimatkhau.jsp">Change Password</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="khachhang?action=dang-xuat">Log Out</a></li>
-							</ul></li>
-					</ul>				
-						
-					<% } %>
-				</form>
-			</div>
-		</div>
-	</nav>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+	<jsp:include page="header.jsp" /> 
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">E-COMMERCE PRODUCT</h1>
-        <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employÃ© dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les annÃ©es 1500...</p>
+        <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500...</p>
     </div>
 </section>
 <div class="container">
@@ -82,7 +12,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-                    <li class="breadcrumb-item"><a href="category.html">Category</a></li>
+                    <li class="breadcrumb-item"><a href="category.jsp">Category</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Product</li>
                 </ol>
             </nav>
@@ -97,7 +27,7 @@
                 <div class="card-body">
                     <a href="" data-toggle="modal" data-target="#productModal">
                         <img class="img-fluid" src="https://dummyimage.com/800x800/55595c/fff" />
-                        <p class="text-center">Zoom</p>
+                        <!-- <p class="text-center">Zoom</p> -->
                     </a>
                 </div>
             </div>
@@ -171,10 +101,10 @@
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-align-justify"></i> Description</div>
                 <div class="card-body">
                     <p class="card-text">
-                        Le Lorem Ipsum est simplement du faux texte employÃ© dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les annÃ©es 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour rÃ©aliser un livre spÃ©cimen de polices de texte. Il n'a pas fait que survivre cinq siÃ¨cles, mais s'est aussi adaptÃ© Ã  la bureautique informatique, sans que son contenu n'en soit modifiÃ©. Il a Ã©tÃ© popularisÃ© dans les annÃ©es 1960 grÃ¢ce Ã  la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus rÃ©cemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+                        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
                     </p>
                     <p class="card-text">
-                        Contrairement Ã  une opinion rÃ©pandue, le Lorem Ipsum n'est pas simplement du texte alÃ©atoire. Il trouve ses racines dans une oeuvre de la littÃ©rature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intÃ©ressÃ© Ã  un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en Ã©tudiant tous les usages de ce mot dans la littÃ©rature classique, dÃ©couvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des SuprÃªmes Biens et des SuprÃªmes Maux) de CicÃ©ron. Cet ouvrage, trÃ¨s populaire pendant la Renaissance, est un traitÃ© sur la thÃ©orie de l'Ã©thique. Les premiÃ¨res lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.
+                        Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique, découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.
                     </p>
                 </div>
             </div>
@@ -185,7 +115,7 @@
             <div class="card border-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Reviews</div>
                 <div class="card-body">
-                    <div class="review">
+                    <!-- <div class="review">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
 
@@ -199,8 +129,8 @@
                             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                         </p>
                         <hr>
-                    </div>
-                    <div class="review">
+                    </div> -->
+                    <!-- <div class="review">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
 
@@ -214,7 +144,7 @@
                             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                         </p>
                         <hr>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -230,7 +160,7 @@
                 <h5>About</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <p class="mb-0">
-                    Le Lorem Ipsum est simplement du faux texte employÃ© dans la composition et la mise en page avant impression.
+                    Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression.
                 </p>
             </div>
 

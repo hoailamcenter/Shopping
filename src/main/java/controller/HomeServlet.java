@@ -13,28 +13,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
-@WebServlet("/product")
-public class ProductServlet extends HttpServlet{
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		response.setContentType("text/htm");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String cid = request.getParameter("cid");
-		List<Product> list = ProductDB.selectAllProduct();
+		
+		List<Product> list = ProductDB.selectTop4Product();
 		List<Product> list1 = ProductDB.selectTop4BestSeller();
 		Product top = ProductDB.selectBestSellingProduct();
 		List<Category> list2 = CategoryDB.selectAllCategory();
-		List<Product> list3 = ProductDB.selectAllProductByCategoryId(cid);
-		if (cid == null) {
-			request.setAttribute("listAllproduct", list);
-		} else {
-			request.setAttribute("listAllproduct", list3);
-		}
+		
+		request.setAttribute("list4product", list);
 		request.setAttribute("list4bestseller", list1);
 		request.setAttribute("top1product", top);
 		request.setAttribute("listcate", list2);
-		RequestDispatcher rq = request.getRequestDispatcher("product.jsp");
+		RequestDispatcher rq = request.getRequestDispatcher("index.jsp");
 		rq.forward(request, response);		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

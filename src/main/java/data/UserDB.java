@@ -88,8 +88,7 @@ public class UserDB {
 
 	    public User selectByUsernameAndPassword(User t) {
 	        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-	        User ketQua = null;
-	        System.out.println(t.getUserName() + " " + t.getPassword());
+	        User ketQua = null;	   
 	        try {
 	            String jpql = "SELECT u FROM User u WHERE u.userName = :userName and u.password = :password";
 	            TypedQuery<User> query = em.createQuery(jpql, User.class);
