@@ -4,15 +4,6 @@
     font-weight: bold;
     font-size: 150%;
 }
-.category_block li:hover {
-    background-color: #007bff;
-}
-.category_block li:hover a {
-    color: #ffffff;
-}
-.category_block li a {
-    color: #343a40;
-}
 .add_to_cart_block .price {
     color: #c01508;
     text-align: center;
@@ -75,6 +66,8 @@ footer a {
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
 }
 .card-img-top {
     width: 100%;
@@ -116,3 +109,24 @@ footer a {
     flex: 1;
     margin: 5px;
 }
+.category_block li:hover {
+    background-color: #007bff;
+}
+.category_block li:hover a {
+    color: #ffffff;
+}
+.category_block li a {
+    color: #343a40;
+}
+.price {
+    font-size: 18px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+}
+
+.price_discounted {
+    text-decoration: line-through; 
+    color: #999;
+    margin-bottom: 10px; 
+}
+

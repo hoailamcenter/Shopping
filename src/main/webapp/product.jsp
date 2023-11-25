@@ -2,8 +2,8 @@
 	<jsp:include page="header.jsp" /> 
 	<section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">E-COMMERCE CATEGORY</h1>
-        <p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte...</p>
+        <h1 class="jumbotron-heading">PRODUCTS & CATEGORIES</h1>
+        <p class="lead text-muted mb-0"></p>
     </div>
 </section>
 <div class="container">
@@ -36,7 +36,7 @@
                     <img class="img-fluid" src="${top1product.imgLink}" />
                     <h5 class="card-title">${top1product.productName}</h5>
                     <p class="card-text">${top1product.descript}</p>
-                    <p class="bloc_left_price">${top1product.price}</p>
+                    <p class="btn btn-danger btn-block">${top1product.price}</p>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     <div class="card">
                         <img class="card-img-top" src="${p.imgLink}" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="products.jsp" title="View Product">${p.productName}</a></h4>
+                            <h4 class="card-title"><a href="productdetail?pid=${p.productId}" title="View Product">${p.productName}</a></h4>
                             <p class="card-text">${p.descript}</p>
                             <div class="row">
                                 <div class="col">

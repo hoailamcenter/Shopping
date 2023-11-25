@@ -34,6 +34,7 @@ public class ProductServlet extends HttpServlet{
 		request.setAttribute("list4bestseller", list1);
 		request.setAttribute("top1product", top);
 		request.setAttribute("listcate", list2);
+		request.setAttribute("tagactive", cid);
 		RequestDispatcher rq = request.getRequestDispatcher("product.jsp");
 		rq.forward(request, response);		
 	}

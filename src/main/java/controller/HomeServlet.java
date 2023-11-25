@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
-@WebServlet("/home")
+@WebServlet(urlPatterns = {"/","/home"},name = "Home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

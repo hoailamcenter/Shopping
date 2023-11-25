@@ -149,4 +149,25 @@ public class ProductDB {
 
 	        return null; 
 	    }
+	    
+	    public static Product getProductById(String productId) {
+	        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+	        try {
+	            String jpql = "SELECT p FROM Product p WHERE p.productId = :productId";
+	            TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+	            query.setParameter("productId", productId);
+
+	            return query.getSingleResult();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (em != null && em.isOpen()) {
+	                em.close();
+	            }
+	        }
+
+	        return null;
+	    }
+
 }

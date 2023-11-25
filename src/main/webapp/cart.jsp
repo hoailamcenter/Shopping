@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 	<jsp:include page="header.jsp" /> 
+<link href="css/style.css" rel="stylesheet" type="text/css">
 	<section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">E-COMMERCE CART</h1>
+        <h1 class="jumbotron-heading">CART</h1>
      </div>
 </section>
 
