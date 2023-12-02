@@ -21,7 +21,7 @@ public class HomeServlet extends HttpServlet {
 		response.setContentType("text/htm");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		
+
 		List<Product> list = ProductDB.selectTop4Product();
 		List<Product> list1 = ProductDB.selectTop4BestSeller();
 		Product top = ProductDB.selectBestSellingProduct();

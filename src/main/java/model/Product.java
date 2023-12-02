@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -76,4 +78,8 @@ public class Product implements Serializable{
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	public String getPriceCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(price);
+    }
 }

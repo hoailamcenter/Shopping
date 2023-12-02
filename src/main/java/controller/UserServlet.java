@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
-@WebServlet("/khachhang")
+@WebServlet(urlPatterns = {"/khachhang"}, name = "User")
 public class UserServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet{
 			doiMatKhau(request, response);
 		} else if (action.equals("thay-doi-thong-tin")) {
 			thayDoiThongTin(request, response);
-		}
+		} 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +51,12 @@ public class UserServlet extends HttpServlet{
 			if (khachHang != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("khachHang", khachHang);
-				url = "/home";
+				User adminUser = khd.selectAdmin(user);
+	            if (adminUser != null) {
+	                url = "/admin/manage.jsp"; 
+	            } else {
+	                url = "/home"; 
+	            }
 			} else {			
 				request.setAttribute("baoLoi", "Incorrect username or password!");
 				url = "/khachhang/dangnhap.jsp";
@@ -197,13 +202,14 @@ public class UserServlet extends HttpServlet{
 			request.setAttribute("baoLoi", baoLoi);
 
 			if (baoLoi.length() > 0) {
-				url = "/khachhang/dangky.jsp";
+				url = "/khachhang/thaydoithongtin.jsp";
 			} else {
 				Object obj = request.getSession().getAttribute("khachHang");
 				User khachHang = null;
 				if (obj != null)
 					khachHang = (User) obj;
 				if (khachHang != null) {
+					url = "/khachhang/thaydoithongtin.jsp";
 					User kh = new User();
 					kh.setFullName(fullName);
 					kh.setAddress(address);

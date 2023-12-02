@@ -107,6 +107,28 @@ public class UserDB {
 
 	        return ketQua;
 	    }
+	    public User selectAdmin(User t) {
+	        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+	        User ketQua = null;
+
+	        try {
+	            String jpql = "SELECT u FROM User u WHERE u.userName = :userName AND u.password = :password AND u.userName = 'admin'";
+	            TypedQuery<User> query = em.createQuery(jpql, User.class);
+	            query.setParameter("userName", t.getUserName());
+	            query.setParameter("password", t.getPassword());
+
+	            List<User> resultList = query.getResultList();
+	            if (!resultList.isEmpty()) {
+	                ketQua = resultList.get(0);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            em.close();
+	        }
+
+	        return ketQua;
+	    }
 
 	    public boolean changePassword(User t) {
 	        EntityManager em = DBUtil.getEmFactory().createEntityManager();

@@ -169,5 +169,25 @@ public class ProductDB {
 
 	        return null;
 	    }
+	    
+	    public static List<Product> SearchByName(String txtsearch) {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
+			try {
+				String jpql = "SELECT p FROM Product p WHERE p.productName LIKE :searchName";
+				TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+				query.setParameter("searchName", "%" + txtsearch + "%");
+
+				List<Product> resultList = query.getResultList();
+				return resultList;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (em != null && em.isOpen()) {
+					em.close();
+				}
+			}
+			return null;
+		}
 }

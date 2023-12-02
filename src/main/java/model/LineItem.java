@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
+import java.text.NumberFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +37,15 @@ public class LineItem implements Serializable{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public double getTotal() {
+        double total = product.getPrice() * quantity;
+        return total;
+    }
+
+    public String getTotalCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(this.getTotal());
+    }
 	public LineItem() {
 		super();
 	}

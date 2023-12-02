@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -19,14 +21,10 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartId;
 	@OneToMany(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
-	private List<LineItem> items;
+	private ArrayList<LineItem> items;
+
 	public Cart() {
-		super();
-	}
-	public Cart(int cartId, List<LineItem> items) {
-		super();
-		this.cartId = cartId;
-		this.items = items;
+		items = new ArrayList<LineItem>();
 	}
 
 	public int getCartId() {
@@ -37,11 +35,73 @@ public class Cart implements Serializable{
 		this.cartId = cartId;
 	}
 
-    public void setItems(List<LineItem> items) {
-		this.items = items;
-	}
 	public List<LineItem> getItems()
     { 
         return items;
+    }
+	public void addItem(LineItem item, String type) {
+        int code = item.getProduct().getProductId();
+        String update = type.toString();
+        int quantity = item.getQuantity();
+        if(update.equals("true")) 
+        {
+        	for (int i = 0; i < items.size(); i++) {
+                LineItem lineItem = items.get(i);
+                if (lineItem.getProduct().getProductId()==(code)) {
+                    lineItem.setQuantity(quantity);
+                    return;
+                }
+            }
+        } 
+        else {
+        	for (int i = 0; i < items.size(); i++) {
+                LineItem lineItem = items.get(i);
+                if (lineItem.getProduct().getProductId()==(code)) {
+                    lineItem.setQuantity(lineItem.getQuantity() + quantity);
+                    return;
+                }
+            }
+            items.add(item);
+        }
+    }
+
+    public void removeItem(LineItem item) {
+        int code = item.getProduct().getProductId();
+        for (int i = 0; i < items.size(); i++) {
+            LineItem lineItem = items.get(i);
+            if (lineItem.getProduct().getProductId()==(code)) {
+                items.remove(i);
+                return;
+            }
+        }
+    }
+    
+    public double totalBillWithoutShip()
+    {
+        double sum = 0;
+        for (var item: items)
+        {
+            sum += item.getTotal();
+        }
+        return sum;
+    }
+    
+    public String getTotalWithoutShipCurrencyFormat() {
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(this.totalBillWithoutShip());
+    }
+    
+    public double Shipping(){
+        return this.totalBillWithoutShip()*0.1;
+    }
+    
+    public String getTotalCurrentFormat(){
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(this.totalBillWithoutShip()+ this.Shipping());
+    }
+    
+    public String getShipCurrentFormat(){
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+        return currency.format(this.Shipping());
     }
 }
