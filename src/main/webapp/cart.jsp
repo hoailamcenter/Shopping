@@ -11,6 +11,7 @@
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
+            
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -26,7 +27,7 @@
                     <tbody>
                     <c:forEach var="item" items="${cart.items}">
                         <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td><img src="${item.product.imgLink}"/> </td>
                             <td>${item.product.productName}</td>
                             <td>In stock</td>
                             <td>                                    		         
@@ -54,13 +55,20 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><strong>Total</strong></td>
+                            <td><strong></strong></td>
                             <td class="text-right"><strong></strong></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        	<%
+				String baoLoi = request.getAttribute("emptyCartMessage")+"";
+				if(baoLoi.equals("null")){
+					baoLoi = "";
+				}
+			%>
+			<div class="text-center"><span class="red"><%=baoLoi %></span></div>
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
@@ -85,4 +93,17 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" type="text/javascript"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
+<style>
+.red {
+  color: #ff0000; 
+}
+td img {
+  width: 50px; 
+  height: 50px; 
+  object-fit: cover; 
+  border: 1px solid #ddd;
+  border-radius: 5px; 
+}
+
+</style>
 </html>

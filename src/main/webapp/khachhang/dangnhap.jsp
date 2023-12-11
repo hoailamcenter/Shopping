@@ -51,7 +51,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
 				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Log In</button>
-			<a href="dangky.jsp">Sign up</a>
+			<a href="/FinalProject/khachhang/dangky.jsp">Sign up</a>
 			<p class="mt-5 mb-3 text-muted">&copy;</p>
 		</form>
 	</main>

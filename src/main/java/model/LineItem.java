@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 @Entity
@@ -19,6 +20,15 @@ public class LineItem implements Serializable{
 	@OneToOne
 	private Product product;
 	private int quantity;
+	@ManyToOne(optional = true)
+	private Invoice invoice;
+	
+	public Invoice getInvoice() {
+		return invoice;
+	}
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
 	public int getLineItemId() {
 		return lineItemId;
 	}
@@ -47,7 +57,7 @@ public class LineItem implements Serializable{
         return currency.format(this.getTotal());
     }
 	public LineItem() {
-		super();
+
 	}
 	public LineItem(int lineItemId, Product product, int quantity) {
 		super();

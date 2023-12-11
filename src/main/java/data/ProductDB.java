@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.PersistenceException;
 import jakarta.persistence.TypedQuery;
 import model.Product;
 
@@ -189,5 +190,89 @@ public class ProductDB {
 				}
 			}
 			return null;
+		}
+	    
+	    public static int getTotalProduct() {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			try {
+				String jpql = "SELECT COUNT(*) FROM Product";
+				TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+
+				return query.getSingleResult().intValue();
+			} finally {
+				if (em != null && em.isOpen()) {
+					em.close();
+				}
+			}
+		}
+	    
+	    public static List<Product> getPagingProduct(int pageIndex, int pageSize) {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			try {
+				int startIndex = (pageIndex - 1) * pageSize;
+
+				String jpql = "SELECT p FROM Product p";
+				TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+
+				query.setFirstResult(startIndex);
+				query.setMaxResults(pageSize);
+
+				return query.getResultList();
+			} finally {
+				em.close();
+			}
+		}
+	    
+	    public void deleteProduct(String pid) {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			EntityTransaction trans = em.getTransaction();
+
+			try {
+				trans.begin();
+				Product productToDelete = em.find(Product.class, pid);
+
+				if (productToDelete != null) {
+					em.remove(productToDelete);
+					trans.commit();
+				} else {
+					trans.rollback();
+				}
+			} finally {
+				em.close();
+			}
+		}
+
+		public void insertProduct(String productName, String descript, double price, String imgLink, int category,
+				int amount) {
+			EntityManager em = DBUtil.getEmFactory().createEntityManager();
+			EntityTransaction trans = em.getTransaction();
+
+			try {
+				trans.begin();
+
+				Product newProduct = new Product();
+				newProduct.setProductName(productName);
+				newProduct.setDescript(descript);
+				newProduct.setPrice(price);
+				newProduct.setImgLink(imgLink);
+				newProduct.setCategory(category);
+				newProduct.setAmount(amount);
+
+				em.persist(newProduct);
+
+				trans.commit();
+			} catch (PersistenceException e) {
+				if (trans != null && trans.isActive()) {
+					trans.rollback();
+				}
+				e.printStackTrace();
+			} catch (Exception e) {
+				if (trans != null && trans.isActive()) {
+					trans.rollback();
+				}
+				e.printStackTrace();
+			} finally {
+				em.close();
+			}
 		}
 }

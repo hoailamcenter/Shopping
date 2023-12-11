@@ -62,7 +62,13 @@
                         </div>
                     </div>
                 </div>
-                </c:forEach>                    
+                </c:forEach>             
+                <ul class="pagination">
+					<c:forEach begin="1" end="${endP}" var="i">
+					<li class="page-item active"><a href="paging?index=${i}"
+					class="page-link">${i}</a></li>
+					</c:forEach>
+			</ul>
             </div>
         </div>
     </div>
@@ -77,11 +83,6 @@
     margin: 5px;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 70%;
-}
-
 .card-body {
     flex: 1;
     display: flex;
@@ -90,8 +91,9 @@
     justify-content: center; 
 }
 .card-img-top {
-    width: 100%;
-    height: auto;
+    width: 243.5px; 
+  	height: 230px; 
+  	object-fit: cover;
 }
 .card-text {
     overflow: hidden;

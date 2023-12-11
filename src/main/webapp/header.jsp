@@ -15,6 +15,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" ></script>
     <link href="css/style.css" rel="stylesheet" type="text/css">
+ <%
+ String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+	+ request.getContextPath();
+ %>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-light">
@@ -32,7 +36,7 @@
 							<li><a class="dropdown-item" href="product?cid=${o.categoryId}">${o.categoryName}</a></li>
 							</c:forEach>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="product">Products</a></li>		
+					<li class="nav-item"><a class="nav-link" href="paging">Products</a></li>		
 					<li class="nav-item"><a class="nav-link" href="cart">Cart</a></li>												
 					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
 				</ul>
@@ -63,8 +67,8 @@
 						<li class="nav-item dropdown dropstart">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Account</a>
 							<ul class="dropdown-menu">											
-								<li><a class="dropdown-item" href="khachhang/thaydoithongtin.jsp">Change Information</a></li>
-								<li><a class="dropdown-item" href="khachhang/doimatkhau.jsp">Change Password</a></li>
+								<li><a class="dropdown-item" href="<%=url%>/khachhang/thaydoithongtin.jsp">Change Information</a></li>
+								<li><a class="dropdown-item" href="<%=url%>/khachhang/doimatkhau.jsp">Change Password</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="khachhang?action=dang-xuat">Log Out</a></li>
 							</ul></li>

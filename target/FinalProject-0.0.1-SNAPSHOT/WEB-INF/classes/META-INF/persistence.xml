@@ -10,17 +10,17 @@
 
 		<properties>
 			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/banhang" />
+				value="jdbc:mysql://sneakerstoredb.cdhms4zemc83.ap-southeast-1.rds.amazonaws.com:3306/banhang" />
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
 
 			<property name="jakarta.persistence.jdbc.user" value="root" />
 			<property name="jakarta.persistence.jdbc.password"
-				value="1234" />
+				value="123456xc" />
 
-			<!-- <property
+			<property
 				name="jakarta.persistence.schema-generation.database.action"
-				value="drop-and-create" /> --> 
+				value="create" />
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import data.CategoryDB;
 import data.ProductDB;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Cart;
+import model.Category;
 import model.LineItem;
 import model.Product;
 
@@ -18,9 +21,11 @@ import model.Product;
 public class CartServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
-	@Override
+	
 	protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException{
+		List<Category> list2 = CategoryDB.selectAllCategory();
+		request.setAttribute("listcate", list2);
 		ServletContext sc = getServletContext();
 		String action = request.getParameter("action");
         if (action == null) {
@@ -71,8 +76,17 @@ public class CartServlet extends HttpServlet{
                 }
             }           
             url = "/cart.jsp";
-        } else if (action.equals("checkout")) {
-            url = "/checkout.jsp";
+        } 
+        else if (action.equals("checkout")) {
+        	HttpSession session = request.getSession();
+            Cart cart = (Cart) session.getAttribute("cart");
+
+            if (cart != null && !cart.getItems().isEmpty()) {
+                url = "/checkout.jsp";
+            } else {
+                request.setAttribute("emptyCartMessage", "Your cart is empty. Please add items before checking out.");
+                url = "/cart.jsp";
+            }
         }        
         sc.getRequestDispatcher(url).forward(request, response);
     }

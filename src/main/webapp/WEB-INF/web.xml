@@ -4,4 +4,34 @@
 <welcome-file-list>
 <welcome-file>Home</welcome-file>
 </welcome-file-list>
+<servlet>
+    <description></description>
+    <display-name>ManagerServlet</display-name>
+    <servlet-name>ManagerServlet</servlet-name>
+    <servlet-class>controller.ManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerServlet</servlet-name>
+    <url-pattern>/manager</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteServlet</display-name>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>controller.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddProduct</display-name>
+    <servlet-name>AddProduct</servlet-name>
+    <servlet-class>controller.AddProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddProduct</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
 </web-app>

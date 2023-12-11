@@ -2,8 +2,8 @@
 	<jsp:include page="header.jsp" /> 
 	<section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">E-COMMERCE CONTACT</h1>
-        <p class="lead text-muted mb-0">Contact Page build with Bootstrap 4 !</p>
+        <h1 class="jumbotron-heading">CONTACT</h1>
+        <p class="lead text-muted mb-0"></p>
     </div>
 </section>
 <div class="container">

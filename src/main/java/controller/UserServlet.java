@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
-@WebServlet(urlPatterns = {"/khachhang"}, name = "User")
+@WebServlet(urlPatterns = {"/khachhang"})
 public class UserServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -53,7 +53,7 @@ public class UserServlet extends HttpServlet{
 				session.setAttribute("khachHang", khachHang);
 				User adminUser = khd.selectAdmin(user);
 	            if (adminUser != null) {
-	                url = "/admin/manage.jsp"; 
+	                url = "/manager"; 
 	            } else {
 	                url = "/home"; 
 	            }
@@ -61,8 +61,8 @@ public class UserServlet extends HttpServlet{
 				request.setAttribute("baoLoi", "Incorrect username or password!");
 				url = "/khachhang/dangnhap.jsp";
 			}
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-			rd.forward(request, response);
+			RequestDispatcher rq = request.getRequestDispatcher(url);
+			rq.forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -227,10 +227,8 @@ public class UserServlet extends HttpServlet{
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
 			rd.forward(request, response);
 		} catch (ServletException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Operation successful! Please return to the login page.</h1>
+<h1>Operation successful! Thank you.</h1>
 	<script>
          setTimeout(function(){
-            window.location.href = 'index.jsp';
+            window.location.href = 'home';
          }, 5000);
       </script>
 </body>

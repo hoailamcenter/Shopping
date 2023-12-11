@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Home</title>
+<title>Shopping</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -32,14 +32,21 @@
 							<li><a class="dropdown-item" href="product?cid=${o.categoryId}">${o.categoryName}</a></li>
 							</c:forEach>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="product">Products</a></li>
-					<li class="nav-item"><a class="nav-link" href="cart.jsp">Cart</a></li>
-					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" href="paging">Products</a></li>		
+					<li class="nav-item"><a class="nav-link" href="cart">Cart</a></li>												
+					<li class="nav-item"><a class="nav-link" href="contact.jsp">Contact</a></li>
 				</ul>
-				<form class="d-flex" role="search" style="position: relative;display: block;float: right;">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Find</button>
+				<form action="search" method="post" class="d-flex" role="search" style="position: relative;display: block;float: right;">
+					<div class="input-group input-group-sm">
+						<input value="${txts}" name="txt" type="text" class="form-control"
+							aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+							placeholder="Search...">
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-secondary btn-number">
+								<i class="fa fa-search"></i>
+							</button>
+						</div>
+					</div>
 					<%
 						Object obj = session.getAttribute("khachHang");
 						User khachHang = null;
@@ -55,11 +62,9 @@
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 bg-infor ">
 						<li class="nav-item dropdown dropstart">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Account</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">My Order</a></li>
-								<li><a class="dropdown-item" href="#">Notice</a></li>
+							<ul class="dropdown-menu">											
 								<li><a class="dropdown-item" href="khachhang/thaydoithongtin.jsp">Change Information</a></li>
-								<li><a class="dropdown-item" href="khachhang?action=doi-mat-khau">Change Password</a></li>
+								<li><a class="dropdown-item" href="khachhang/doimatkhau.jsp">Change Password</a></li>
 								<li><hr class="dropdown-divider"></li>
 								<li><a class="dropdown-item" href="khachhang?action=dang-xuat">Log Out</a></li>
 							</ul></li>

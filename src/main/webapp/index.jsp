@@ -1,11 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 	<jsp:include page="header.jsp" />  
-	<section class="jumbotron text-center">
-    <div class="container">
-        <h1 class="jumbotron-heading">HOME</h1>
-        <p class="lead text-muted mb-0"></p>
-    </div>
-</section>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -138,11 +133,6 @@
     margin: 5px;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 70%;
-}
-
 .card-body {
     flex: 1;
     display: flex;
@@ -151,8 +141,9 @@
     justify-content: center; 
 }
 .card-img-top {
-    width: 100%;
-    height: 50%;
+    width: 230px; 
+  	height: 230px; 
+  	object-fit: cover;
 }
 .card-text {
     overflow: hidden;

@@ -21,10 +21,10 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartId;
 	@OneToMany(fetch=FetchType.EAGER, cascade= CascadeType.ALL)
-	private ArrayList<LineItem> items;
+	private List<LineItem> items;
 
 	public Cart() {
-		items = new ArrayList<LineItem>();
+		items = new ArrayList<>();
 	}
 
 	public int getCartId() {
@@ -34,7 +34,11 @@ public class Cart implements Serializable{
 	public void setCartId(int cartId) {
 		this.cartId = cartId;
 	}
-
+	
+	public void setItems(List<LineItem> lineItems) {
+        items = lineItems;
+    }
+	
 	public List<LineItem> getItems()
     { 
         return items;
